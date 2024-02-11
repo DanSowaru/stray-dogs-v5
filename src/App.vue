@@ -1,11 +1,13 @@
 <template>
+
+<div id="root-container">
   <HeaderComponent />
-  <FooterComponent />
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+
   <router-view/>
+
+  <FooterComponent />
+</div>
+
 </template>
 
 <script>
@@ -24,5 +26,12 @@ export default {
 </script>
 
 <style lang="scss">
+
+#root-container {
+  display: flex;
+  flex-direction: column;
+  width: 768px;
+  height: 100svh;
+}
 
 </style>

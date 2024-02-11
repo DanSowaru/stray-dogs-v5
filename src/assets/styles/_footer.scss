@@ -1,7 +1,3 @@
-// ---------------------------------------------------------------------------------------
-// ---------------------------------------------------------- FOOTER MENU ----------------
-// ---------------------------------------------------------------------------------------
-
 #game-footer {
     margin-top: auto;
     padding: 1vh 0;
@@ -12,6 +8,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    * {
+        text-decoration: none;
+    }
 }
 
 .footer-button {
@@ -36,6 +35,10 @@
     @media ($breakDesktop) {
         font-size: 2rem;
     }
+
+}
+.game-menu * {
+    text-decoration: none;
 }
 
 .button-icon {
@@ -44,26 +47,5 @@
     }
     @media ($breakDesktop) {
         width: 2rem;
-    }
-}
-
-.router-button a {
-    text-decoration: none;
-    background-color: $window-light-blue;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30vw;
-    height: 10vw;
-    max-height: 80px;
-    max-width: 200px;
-
-    @media ($breakMobile) {
-        font-size: 5vw;
-    }
-
-    @media ($breakDesktop) {
-        font-size: 2rem;
     }
 }

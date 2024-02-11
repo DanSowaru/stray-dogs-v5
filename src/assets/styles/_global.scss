@@ -18,7 +18,7 @@
     }
 }
 
-@include font('GenericMobileSystem', '@/assets/fonts/GenericMobileSystem');
+@include font("GenericMobileSystem", "@/assets/fonts/GenericMobileSystem");
 
 * {
     margin: 0;
@@ -29,12 +29,16 @@
 
 body {
     -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 body,
 input,
 button {
-    font-family: GenericMobileSystem, 'Courier New', Courier, monospace;
+    font-family: GenericMobileSystem, "Courier New", Courier, monospace;
 }
 
 button {
