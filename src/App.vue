@@ -1,13 +1,15 @@
 <template>
+  <div id="root-container">
+    <HeaderComponent />
+    <main id="game-window">
+      <div id="window-border">
 
-<div id="root-container">
-  <HeaderComponent />
+        <router-view />
 
-  <router-view/>
-
-  <FooterComponent />
-</div>
-
+      </div>
+    </main>
+    <FooterComponent />
+  </div>
 </template>
 
 <script>
@@ -30,8 +32,8 @@ export default {
 #root-container {
   display: flex;
   flex-direction: column;
-  width: 768px;
-  height: 100svh;
+  width: 100%;
+  max-width: 768px;
+  min-height: 100svh;
 }
-
 </style>
