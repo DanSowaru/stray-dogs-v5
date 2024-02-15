@@ -2,10 +2,7 @@
   <section id="chatlog-list-container">
 
     <!-- <ChatblockComponent :chatPreviewProp="chatlog"/> -->
-    <ChatblockComponent
-      v-for="(chatPreviewUnit, index) in chatlog"
-      :key="index"
-      :chatPreviewProp="chatPreviewUnit"/>
+    <ChatblockComponent v-for="(chatPreviewUnit, index) in importedChatlog" :key="index" :chatPreviewProp="chatPreviewUnit" />
 
   </section>
 </template>
@@ -14,7 +11,7 @@
 
 import ChatblockComponent from '@/components/ChatblockComponent.vue'
 
-import importedChatlog from '@/assets/gamefiles/chatlog.json'
+import { chatlog } from '@/assets/gamefiles/chatlog.js'
 
 export default {
   name: 'ChatView',
@@ -23,12 +20,11 @@ export default {
   },
   data () {
     return {
-      chatlog: importedChatlog
+      importedChatlog: chatlog
     }
   },
 
   mounted () {
-
   }
 }
 </script>

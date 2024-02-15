@@ -33,10 +33,6 @@ export default {
         return this.chatPreviewProp.lastMessage
       }
     }
-  },
-
-  mounted () {
-    console.log('portrait:' + this.chatPreviewProp.portraitUrl)
   }
 }
 
