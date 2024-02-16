@@ -1,6 +1,7 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-tabs */
 
-const chatlog = [
+let chatlog = [
   {
     id: 1,
     name: 'Magpie Latte',
@@ -17,11 +18,29 @@ const chatlog = [
   }
 ]
 
-// function testUpdate(id, name, portraitUrl, lastMessage) {
-//   let isNewDog = verifyIfIsNewDog()
-//   if (isNewDog) {
+export function updateChatlog (dogName, portraitUrl, lastMessage) {
+  if (!isExistingDog(dogName)) {
+    let newId = generateNewId()
+    chatlog.push({ id: newId, name: dogName, portraitUrl: portraitUrl, lastMessage: lastMessage })
+  } else {
+    alert('dog already exists')
+    // TODO: update existing chatlog
+  }
+}
 
-//   }
-// }
+function isExistingDog (dogName) {
+  let newDogResult = chatlog.some(chatbox => chatbox.name === dogName)
+  console.log('isExistingDog? :: ' + newDogResult)
+  return newDogResult
+}
+
+function generateNewId () {
+  let highestId = 0
+  for (let chatbox of chatlog) {
+    if (highestId < chatbox.id) highestId = chatbox.id
+  }
+  highestId++
+  return highestId
+}
 
 export { chatlog }
