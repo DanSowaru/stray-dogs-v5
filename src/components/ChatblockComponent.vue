@@ -11,6 +11,7 @@
         {{ truncatedLastMessage }}
       </p>
     </div>
+    <!-- TODO: Implement Unread Messages signal in this component -->
   </div>
 </template>
 
@@ -27,10 +28,10 @@ export default {
   },
   computed: {
     truncatedLastMessage () {
-      if (this.chatPreviewProp.lastMessage.length > 150) {
-        return this.chatPreviewProp.lastMessage.slice(0, 150) + '...'
+      if (this.chatPreviewProp.dogLastMessage.length > 150) {
+        return this.chatPreviewProp.dogLastMessage.slice(0, 150) + '...'
       } else {
-        return this.chatPreviewProp.lastMessage
+        return this.chatPreviewProp.dogLastMessage
       }
     },
     getPortrait () {

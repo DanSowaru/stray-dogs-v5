@@ -7,8 +7,6 @@
       :chatPreviewProp="chatPreviewUnit" />
 
     <button @click="testUpdate">update Chatlog</button>
-    <button @click="showLog">show Log</button>
-
   </section>
 </template>
 
@@ -17,6 +15,7 @@
 import ChatblockComponent from '@/components/ChatblockComponent.vue'
 
 import { testChatlog } from '@/assets/gamefiles/chatlog.js'
+import { jackRabbit } from '@/assets/gamefiles/Dog.js'
 
 export default {
   name: 'ChatView',
@@ -50,21 +49,18 @@ export default {
       return highestId
     },
 
-    updateChatlog (dogName, dogPortrait, lastMessage) {
-      if (!this.isExistingDog(dogName)) {
+    updateChatlog (dogObject) {
+      if (!this.isExistingDog(dogObject.dogName)) {
         let newId = this.generateNewId()
-        this.chatlog.push({ id: newId, dogName: dogName, dogPortrait: dogPortrait, lastMessage: lastMessage })
+        this.chatlog.push({ id: newId, dogName: dogObject.dogName, dogPortrait: dogObject.dogPortrait, dogLastMessage: dogObject.dogLastMessage })
       } else {
         // TODO: update existing chatlog
       }
     },
 
     testUpdate () {
-      this.updateChatlog('Tomboy', 'femrab2', 'Hey, I\'m new here!')
+      this.updateChatlog(jackRabbit)
       // this.$forceUpdate() // Vue-backed forced update
-    },
-    showLog () {
-      console.log(this.chatlog)
     }
   }
 }

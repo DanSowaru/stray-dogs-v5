@@ -261,3 +261,17 @@ Just add `import variableName from './path/to/file.json` in the script of the co
 - **assets** = Images, stylesheets, etc.;
 - **stores** = Pinia stores, for state management;
 
+## Deployment
+- run `npm run build`
+- the **dist** folder can be served in a HTTP protocol format by installing **Serve**:
+
+        npm install -g serve
+        # -s flag means serve it in Single-Page Application mode which deals with the routing problem below
+        serve -s dist
+
+### Routing with history.pushState#
+
+If you are using Vue Router in history mode, a simple static file server will fail. For example, if you used Vue Router with a route for /todos/42, the dev server has been configured to respond to localhost:3000/todos/42 properly, but a simple static server serving a production build will respond with a 404 instead.
+
+To fix that, you will need to configure your production server to fallback to index.html for any requests that do not match a static file. The [Vue Router docs](https://router.vuejs.org/guide/essentials/history-mode.html) provide configuration instructions for common server setups.
+
