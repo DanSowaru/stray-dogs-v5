@@ -3,8 +3,11 @@
   <section id="chatlog-list-container">
 
     <!-- <ChatblockComponent :chatPreviewProp="chatlog"/> -->
-    <ChatblockComponent v-for="chatPreviewUnit in chatlog" :key="chatPreviewUnit.id"
-      :chatPreviewProp="chatPreviewUnit" />
+    <ChatblockComponent
+    v-for="chatPreviewUnit in chatlog"
+    :key="chatPreviewUnit.id"
+    :chatPreviewProp="chatPreviewUnit"
+    @click="Open"/>
 
     <button @click="testUpdate">update Chatlog</button>
   </section>
@@ -24,7 +27,7 @@ export default {
   },
   data () {
     return {
-      // TODO: change the origin of the imported chatlog to an array of Dogs objects
+      // TODO: change the origin of the imported chatlog to an array of Dogs objects that is holded in the ChatView component in an array of objects
       chatlog: testChatlog
     }
   },

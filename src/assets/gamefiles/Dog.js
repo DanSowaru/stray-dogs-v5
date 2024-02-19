@@ -22,6 +22,7 @@ class Dog {
 
   dogMessages = []
   dogLastMessage = ''
+  unreadMessages = 0
 
   constructor (dogName, dogPortrait, dogPersonalityGood, dogPersonalityEvil, dogPersonalitySmart, dogPersonalityDumb, dogSkillPiloting, dogSkillPistols, dogSkillRifles, dogSkillStrategy, dogSkillCharisma, dogSkillLeadership) {
     this.dogName = dogName
@@ -41,9 +42,10 @@ class Dog {
   newMessage (message) {
     this.dogMessages.push(message)
     this.dogLastMessage = message
+    this.unreadMessages++
   }
 
-  // TODO: Implement Unread Messages counter that resest after Chatblock clicking
+  // TODO: Implement Unread Messages counter that resets after Chatblock clicking
 }
 
 export var jackRabbit = new Dog(
