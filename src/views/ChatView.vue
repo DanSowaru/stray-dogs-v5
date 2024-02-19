@@ -1,8 +1,9 @@
+
 <template>
   <section id="chatlog-list-container">
 
     <!-- <ChatblockComponent :chatPreviewProp="chatlog"/> -->
-    <ChatblockComponent v-for="(chatPreviewUnit, index) in importedChatlog" :key="index"
+    <ChatblockComponent v-for="chatPreviewUnit in importedChatlog" :key="chatPreviewUnit.id"
       :chatPreviewProp="chatPreviewUnit" />
 
     <button @click="testUpdate">update Chatlog</button>
@@ -15,7 +16,7 @@
 
 import ChatblockComponent from '@/components/ChatblockComponent.vue'
 
-import { chatlog, updateChatlog } from '@/assets/gamefiles/chatlog.js'
+import { chatlog } from '@/assets/gamefiles/chatlog.js'
 
 export default {
   name: 'ChatView',
@@ -24,12 +25,42 @@ export default {
   },
   data () {
     return {
+      // TODO: change the origin of the imported chatlog to an array of Dogs objects
       importedChatlog: chatlog
     }
   },
+  // ------------------------------------------------------------------
+  // ------------------------------------------------------- METHODS
+  // ------------------------------------------------------------------
   methods: {
+    /* eslint-disable prefer-const */
+    /* eslint-disable no-tabs */
+
+    isExistingDog (dogName) {
+      let newDogResult = this.importedChatlog.some(chatbox => chatbox.dogName === dogName)
+      return newDogResult
+    },
+
+    generateNewId () {
+      let highestId = 0
+      for (let chatbox of this.importedChatlog) {
+        if (highestId < chatbox.id) highestId = chatbox.id
+      }
+      highestId++
+      return highestId
+    },
+
+    updateChatlog (dogName, dogPortrait, lastMessage) {
+      if (!this.isExistingDog(dogName)) {
+        let newId = this.generateNewId()
+        chatlog.push({ id: newId, dogName: dogName, dogPortrait: dogPortrait, lastMessage: lastMessage })
+      } else {
+        // TODO: update existing chatlog
+      }
+    },
+
     testUpdate () {
-      updateChatlog('Tomboy', 'femrab2.png', 'Hey, I\'m new here!')
+      this.updateChatlog('Tomboy', 'femrab2', 'Hey, I\'m new here!')
       this.$forceUpdate() // Vue-backed forced update
     },
     showLog () {

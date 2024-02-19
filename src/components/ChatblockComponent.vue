@@ -1,11 +1,11 @@
 <template>
   <div class="dog-chat-block">
     <div class="chat-block-portrait">
-      <img :src="getPortrait()" alt="" />
+      <img :src="getPortrait" alt="" />
     </div>
     <div class="chat-block-preview">
       <h2 class="chat-block-dog-name">
-        {{ chatPreviewProp.name }}
+        {{ chatPreviewProp.dogName }}
       </h2>
       <p class="chat-block-paragraph-preview">
         {{ truncatedLastMessage }}
@@ -21,9 +21,9 @@ export default {
   props: ['chatPreviewProp'],
 
   methods: {
-    getPortrait () {
-      return require('@/assets/images/portraits/' + this.chatPreviewProp.portraitUrl)
-    }
+    // getPortrait () {
+    //   return require('@/assets/images/portraits/' + this.chatPreviewProp.portraitUrl)
+    // }
   },
   computed: {
     truncatedLastMessage () {
@@ -32,6 +32,9 @@ export default {
       } else {
         return this.chatPreviewProp.lastMessage
       }
+    },
+    getPortrait () {
+      return require('@/assets/images/portraits/' + this.chatPreviewProp.dogPortrait + '.png')
     }
   }
 }
