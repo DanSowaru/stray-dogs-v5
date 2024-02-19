@@ -3,7 +3,7 @@
   <section id="chatlog-list-container">
 
     <!-- <ChatblockComponent :chatPreviewProp="chatlog"/> -->
-    <ChatblockComponent v-for="chatPreviewUnit in importedChatlog" :key="chatPreviewUnit.id"
+    <ChatblockComponent v-for="chatPreviewUnit in chatlog" :key="chatPreviewUnit.id"
       :chatPreviewProp="chatPreviewUnit" />
 
     <button @click="testUpdate">update Chatlog</button>
@@ -16,7 +16,7 @@
 
 import ChatblockComponent from '@/components/ChatblockComponent.vue'
 
-import { chatlog } from '@/assets/gamefiles/chatlog.js'
+import { testChatlog } from '@/assets/gamefiles/chatlog.js'
 
 export default {
   name: 'ChatView',
@@ -26,7 +26,7 @@ export default {
   data () {
     return {
       // TODO: change the origin of the imported chatlog to an array of Dogs objects
-      importedChatlog: chatlog
+      chatlog: testChatlog
     }
   },
   // ------------------------------------------------------------------
@@ -37,13 +37,13 @@ export default {
     /* eslint-disable no-tabs */
 
     isExistingDog (dogName) {
-      let newDogResult = this.importedChatlog.some(chatbox => chatbox.dogName === dogName)
+      let newDogResult = this.chatlog.some(chatbox => chatbox.dogName === dogName)
       return newDogResult
     },
 
     generateNewId () {
       let highestId = 0
-      for (let chatbox of this.importedChatlog) {
+      for (let chatbox of this.chatlog) {
         if (highestId < chatbox.id) highestId = chatbox.id
       }
       highestId++
@@ -53,7 +53,7 @@ export default {
     updateChatlog (dogName, dogPortrait, lastMessage) {
       if (!this.isExistingDog(dogName)) {
         let newId = this.generateNewId()
-        chatlog.push({ id: newId, dogName: dogName, dogPortrait: dogPortrait, lastMessage: lastMessage })
+        this.chatlog.push({ id: newId, dogName: dogName, dogPortrait: dogPortrait, lastMessage: lastMessage })
       } else {
         // TODO: update existing chatlog
       }
@@ -61,10 +61,10 @@ export default {
 
     testUpdate () {
       this.updateChatlog('Tomboy', 'femrab2', 'Hey, I\'m new here!')
-      this.$forceUpdate() // Vue-backed forced update
+      // this.$forceUpdate() // Vue-backed forced update
     },
     showLog () {
-      console.log(this.importedChatlog)
+      console.log(this.chatlog)
     }
   }
 }

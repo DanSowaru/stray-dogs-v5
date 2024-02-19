@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-tabs */
 
-let chatlog = [
+let testChatlog = [
   {
     id: 1,
     dogName: 'Magpie Latte',
@@ -18,4 +18,4 @@ let chatlog = [
   }
 ]
 
-export { chatlog }
+export { testChatlog }
