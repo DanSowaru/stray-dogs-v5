@@ -1,16 +1,17 @@
 <template>
   <div class="dog-chat-block">
     <div class="chat-block-portrait">
-      <img :src="getPortrait()" alt="" />
+      <img :src="getPortrait" alt="" />
     </div>
     <div class="chat-block-preview">
       <h2 class="chat-block-dog-name">
-        {{ chatPreviewProp.name }}
+        {{ chatPreviewProp.dogName }}
       </h2>
       <p class="chat-block-paragraph-preview">
         {{ truncatedLastMessage }}
       </p>
     </div>
+    <!-- TODO: Implement Unread Messages signal in this component -->
   </div>
 </template>
 
@@ -21,17 +22,20 @@ export default {
   props: ['chatPreviewProp'],
 
   methods: {
-    getPortrait () {
-      return require('@/assets/images/portraits/' + this.chatPreviewProp.portraitUrl)
-    }
+    // getPortrait () {
+    //   return require('@/assets/images/portraits/' + this.chatPreviewProp.portraitUrl)
+    // }
   },
   computed: {
     truncatedLastMessage () {
-      if (this.chatPreviewProp.lastMessage.length > 150) {
-        return this.chatPreviewProp.lastMessage.slice(0, 150) + '...'
+      if (this.chatPreviewProp.dogLastMessage.length > 150) {
+        return this.chatPreviewProp.dogLastMessage.slice(0, 150) + '...'
       } else {
-        return this.chatPreviewProp.lastMessage
+        return this.chatPreviewProp.dogLastMessage
       }
+    },
+    getPortrait () {
+      return require('@/assets/images/portraits/' + this.chatPreviewProp.dogPortrait + '.png')
     }
   }
 }
