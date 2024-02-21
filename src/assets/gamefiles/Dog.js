@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
-class Dog {
+export class Dog {
   dogName = 'Unknown name'
+
+  dogId = '0'
 
   dogPortrait = 'unknown'
 
@@ -40,27 +42,20 @@ class Dog {
   }
 
   newMessage (message) {
-    this.dogMessages.push(message)
+    const currentTime = new Date()
+    const dogName = this.dogName
+    this.dogMessages.push({ dogName, message, currentTime })
     this.dogLastMessage = message
     this.unreadMessages++
   }
 
+  newPlayerReply (message) {
+    const currentTime = new Date()
+    const player = 'player'
+    this.dogMessages.push({ player, message, currentTime })
+    this.dogLastMessage = message
+    // TODO: Use the first parameter of the dogMessages objects to determine styling and identification of individual chat replies
+  }
+
   // TODO: Implement Unread Messages counter that resets after Chatblock clicking
 }
-
-export var jackRabbit = new Dog(
-  'Jack Rabbit',
-  'femrab2',
-  86,
-  10,
-  76,
-  8,
-  90,
-  18,
-  4,
-  48,
-  60,
-  21
-)
-
-jackRabbit.newMessage('This is a method generated message!')

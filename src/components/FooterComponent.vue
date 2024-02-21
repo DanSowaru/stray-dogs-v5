@@ -1,5 +1,6 @@
 <template>
   <footer id="game-footer">
+    <EngineComponent />
     <nav id="game-menu">
       <router-link to="/chat">
         <button class="footer-button" type="button">
@@ -20,3 +21,15 @@
     </nav>
   </footer>
 </template>
+
+<script>
+
+import EngineComponent from '@/components/EngineComponent.vue'
+
+export default {
+  name: 'FooterComponent',
+  components: {
+    EngineComponent
+  }
+}
+</script>

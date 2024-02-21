@@ -1,5 +1,7 @@
+/*
+
   // Download Json Data
-  downloadJson () {
+downloadJson() {
     const data = JSON.stringify(this.chatlog, null, 2)
     const fileName = 'data.json'
     const file = new Blob([data], { type: 'application/json' })
@@ -20,7 +22,7 @@
   }
 
   // Upload Json Data
-  handleFileUpload (event) {
+handleFileUpload(event) {
     const file = event.target.files[0]
     if (!file) {
       return
@@ -37,7 +39,8 @@
     }
     reader.readAsText(file)
   }
-  processJsonData (data) {
+  processJsonData(data) {
     this.currentJsonObject = data //change to the Json to be updated
     console.log(data)
   }
+*/

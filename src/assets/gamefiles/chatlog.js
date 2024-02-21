@@ -3,14 +3,14 @@
 
 let testChatlog = [
   {
-    id: 1,
+    dogId: 1,
     dogName: 'Magpie Latte',
     dogPortrait: 'fembir18',
     dogLastMessage:
     'Hey boss, I got news on that case. If we run now we may be able to capture the dogs!'
   },
   {
-    id: 2,
+    dogId: 2,
     dogName: 'Mona Macax',
     dogPortrait: 'femmon19',
     dogLastMessage:

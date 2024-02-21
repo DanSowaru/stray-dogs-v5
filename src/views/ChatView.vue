@@ -18,7 +18,7 @@
 import ChatblockComponent from '@/components/ChatblockComponent.vue'
 
 import { testChatlog } from '@/assets/gamefiles/chatlog.js'
-import { jackRabbit } from '@/assets/gamefiles/Dog.js'
+import { Dog } from '@/assets/gamefiles/Dog.js'
 
 export default {
   name: 'ChatView',
@@ -28,7 +28,8 @@ export default {
   data () {
     return {
       // TODO: change the origin of the imported chatlog to an array of Dogs objects that is holded in the ChatView component in an array of objects
-      chatlog: testChatlog
+      chatlog: testChatlog,
+      dogId: 0
     }
   },
   // ------------------------------------------------------------------
@@ -44,24 +45,38 @@ export default {
     },
 
     generateNewId () {
-      let highestId = 0
-      for (let chatbox of this.chatlog) {
-        if (highestId < chatbox.id) highestId = chatbox.id
-      }
-      highestId++
-      return highestId
+      this.dogId++
+      const isIdAlreadyUsed = this.chatlog.some(chatbox => chatbox.dogId === this.dogId)
+      return isIdAlreadyUsed ? this.generateNewId() : this.dogId
     },
 
     updateChatlog (dogObject) {
       if (!this.isExistingDog(dogObject.dogName)) {
         let newId = this.generateNewId()
-        this.chatlog.push({ id: newId, dogName: dogObject.dogName, dogPortrait: dogObject.dogPortrait, dogLastMessage: dogObject.dogLastMessage })
+        this.chatlog.push({ dogId: newId, dogName: dogObject.dogName, dogPortrait: dogObject.dogPortrait, dogLastMessage: dogObject.dogLastMessage })
       } else {
         // TODO: update existing chatlog
       }
     },
 
     testUpdate () {
+      let jackRabbit = new Dog(
+        'Jack Rabbit',
+        'femrab2',
+        86,
+        10,
+        76,
+        8,
+        90,
+        18,
+        4,
+        48,
+        60,
+        21
+      )
+
+      jackRabbit.newMessage('Is this thing turned on?')
+
       this.updateChatlog(jackRabbit)
       // this.$forceUpdate() // Vue-backed forced update
     }
