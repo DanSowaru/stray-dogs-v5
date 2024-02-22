@@ -40,14 +40,11 @@ export default {
     },
 
     checkIfTimeIsRound () {
-      this.checkIfTimeIsRoundInterval = setInterval(() => {
-        while (!(this.currentSeconds % 10 === 0 || this.currentSeconds % 10 === 5)) {
-          this.currentSeconds = new Date().getSeconds()
-          continue
-        }
-        this.updateTime()
-        clearInterval(this.checkIfTimeIsRoundInterval)
-      }, 1000)
+      while (!(this.currentSeconds % 10 === 0 || this.currentSeconds % 10 === 5)) {
+        this.currentSeconds = new Date().getSeconds()
+        continue
+      }
+      this.updateTime()
     },
 
     useINTLTime () {
