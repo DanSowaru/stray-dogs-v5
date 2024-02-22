@@ -2,42 +2,41 @@
   <p>
     {{ getCurrentFullTime }}
   </p>
+
 </template>
 
 <script>
 export default {
   name: 'DateComponent',
+
   data () {
     return {
 
-      currentTime: new Date(),
-      currentHour: new Date().getHours(),
-      currentMinutes: new Date().getMinutes(),
+      currentTime: this.useINTLTime(new Date()),
       currentSeconds: new Date().getSeconds(),
       updateTimeInterval: null,
-      checkIfTimeIsRoundInterval: null,
-      formattedTime: null
+      checkIfTimeIsRoundInterval: null
     }
   },
 
   computed: {
 
     getCurrentFullTime () {
-      return `${this.currentHour} : ${this.currentMinutes} : ${this.currentSeconds.toString().padStart(2, '0')}`
+      // return `${this.currentHour} : ${this.currentMinutes} : ${this.currentSeconds.toString().padStart(2, '0')}`
+      return this.currentTime
     }
   },
 
   methods: {
     updateTime () {
-      if (!(this.currentSeconds % 10 === 0 || this.currentSeconds % 10 === 5)) {
-        this.checkIfTimeIsRound()
-      } else {
-        this.updateTimeInterval = setInterval(() => {
-          this.currentHour = new Date().getHours()
-          this.currentMinutes = new Date().getMinutes()
-          this.currentSeconds = new Date().getSeconds()
-        }, 5000)
-      }
+      this.updateTimeInterval = setInterval(() => {
+        if (!(this.currentSeconds % 10 === 0 || this.currentSeconds % 10 === 5)) {
+          this.checkIfTimeIsRound()
+          clearInterval(this.updateTimeInterval)
+        } else {
+          this.currentTime = this.useINTLTime()
+        }
+      }, 5000)
     },
 
     checkIfTimeIsRound () {
@@ -49,21 +48,22 @@ export default {
         this.updateTime()
         clearInterval(this.checkIfTimeIsRoundInterval)
       }, 1000)
+    },
+
+    useINTLTime () {
+      const data = new Date()
+
+      const intl = new Intl.DateTimeFormat('pt-BR', {
+        // day: '2-digit',
+        // month: '2-digit',
+        // year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      })
+
+      return intl.format(data)
     }
-    // TODO: Use this instead of  this monstruosity
-    //     const data = new Date('2024-02-21T18:50:08.752Z')
-
-    // const intl = new Intl.DateTimeFormat('pt-BR', {
-    //     day: '2-digit',
-    //     month: '2-digit',
-    //     year: 'numeric',
-    //     hour: '2-digit',
-    //     minute: '2-digit',
-    //     second: '2-digit'
-    // })
-
-    // console.log(intl.format(data))
-
   },
 
   // ------------------------------------------------------------------- ------------

@@ -39,18 +39,6 @@ export default {
     randomTester (max) {
       return Math.random() * (max - 0) + 1
     }
-    // TODO: Use this instead of  this monstruosity
-    //   const data = new Date('2024-02-21T18:50:08.752Z')
-
-    //   const intl = new Intl.DateTimeFormat('pt-BR', {
-    //     day: '2-digit',
-    //     month: '2-digit',
-    //     year: 'numeric',
-    //     hour: '2-digit',
-    //     minute: '2-digit',
-    //     second: '2-digit'
-    // })
-
   },
 
   // ------------------------------------------------------------------- ------------
