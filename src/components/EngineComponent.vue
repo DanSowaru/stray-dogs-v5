@@ -3,7 +3,7 @@
     <div class="engine-view-slot">
       <p>
         <!-- TODO: CReate Component: Player Money -->
-        {{ getPlayerMoney }}
+        $ {{ getPlayerMoney }}
       </p>
     </div>
     <div class="engine-view-slot">
