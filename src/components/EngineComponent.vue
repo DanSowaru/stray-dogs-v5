@@ -1,9 +1,12 @@
 <template>
   <section id="engine-view-container">
     <div class="engine-view-slot">
-      <p>
+      <p id="money-view-p">
         <!-- TODO: CReate Component: Player Money -->
-        $ {{ getPlayerMoney }}
+        <img id="money-symbol" src="@/assets/images/icons/money_icon.png" alt="money icon">
+        <span>
+          {{ getPlayerMoney }}
+        </span>
       </p>
     </div>
     <div class="engine-view-slot">
@@ -36,8 +39,13 @@ export default {
   },
 
   methods: {
-    randomTester (max) {
+
+    rollRandomChance (max) {
       return Math.random() * (max - 0) + 1
+    },
+
+    randomEventTrigger () {
+
     }
   },
 
