@@ -2,14 +2,14 @@
 <template>
   <section id="chatlog-list-container">
 
-    <!-- <ChatblockComponent :chatPreviewProp="chatlog"/> -->
     <ChatblockComponent
     v-for="chatPreviewUnit in chatlog"
-    :key="chatPreviewUnit.id"
+    :key="chatPreviewUnit.dogId"
     :chatPreviewProp="chatPreviewUnit"
     @click="Open"/>
 
     <button @click="testUpdate">update Chatlog</button>
+    <button @click="testUpdate2">update Chatlog message</button>
   </section>
 </template>
 
@@ -29,7 +29,21 @@ export default {
     return {
       // TODO: change the origin of the imported chatlog to an array of Dogs objects that is holded in the ChatView component in an array of objects
       chatlog: testChatlog,
-      dogId: 0
+      dogId: 0,
+      jackRabbit: new Dog(
+        'Jack Rabbit',
+        'femrab2',
+        86,
+        10,
+        76,
+        8,
+        90,
+        18,
+        4,
+        48,
+        60,
+        21
+      )
     }
   },
   // ------------------------------------------------------------------
@@ -55,30 +69,26 @@ export default {
         let newId = this.generateNewId()
         this.chatlog.push({ dogId: newId, dogName: dogObject.dogName, dogPortrait: dogObject.dogPortrait, dogLastMessage: dogObject.dogLastMessage })
       } else {
-        // TODO: update existing chatlog
+        this.chatlog.forEach(chatbox => {
+          if (chatbox.dogName === dogObject.dogName) {
+            chatbox.dogLastMessage = dogObject.dogLastMessage
+          }
+        })
       }
     },
 
+    // ///////////////////////////////////////////////////     TEST AREA
     testUpdate () {
-      let jackRabbit = new Dog(
-        'Jack Rabbit',
-        'femrab2',
-        86,
-        10,
-        76,
-        8,
-        90,
-        18,
-        4,
-        48,
-        60,
-        21
-      )
+      this.jackRabbit.newMessage('Is this thing turned on?')
 
-      jackRabbit.newMessage('Is this thing turned on?')
+      this.updateChatlog(this.jackRabbit)
 
-      this.updateChatlog(jackRabbit)
-      // this.$forceUpdate() // Vue-backed forced update
+      console.log(this.chatlog)
+    },
+
+    testUpdate2 () {
+      this.jackRabbit.newMessage('This is my second message!')
+      this.updateChatlog(this.jackRabbit)
     }
   }
 }

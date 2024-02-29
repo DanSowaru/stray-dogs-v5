@@ -22,7 +22,6 @@ export default {
   computed: {
 
     getCurrentFullTime () {
-      // return `${this.currentHour} : ${this.currentMinutes} : ${this.currentSeconds.toString().padStart(2, '0')}`
       return this.currentTime
     }
   },

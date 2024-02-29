@@ -160,7 +160,25 @@ A way to connect elements in the HTML with the Vue.js Javascript
 
 - Then in the child component we receive the variables with a `props` array of Strings, after the template. If using in a tag attribute, v-bind the attribute too:
 
-       props: ["label"],
+        props: ["label"],
+
+- `props` can also be passed with a longer format for _validation_:
+
+
+        props: {
+                name: {
+                        type: String,
+                        required: true
+                },
+                age: {
+                        type: Number,
+                        default: 0
+                        validator: function (value) {
+                                return value > 18;
+                        }
+                }
+        }
+
 
 - If we use `v-model` plus the name of the variable create a `modelValue` prop with the same name. The example is creating a `modelValue="email"`. where the prop _modelValue_ is being parsed down with the name to the child. _modelValue_ is a object containing the _email_ string variable:
 
@@ -226,6 +244,8 @@ beforeCreate -> created -> beforeMount -> mounted -> beforeUpdate -> updated -> 
   - API calls from backend to feed the component;
   - Creating or removing events;
   - Getting or cleaning up data.
+
+If a component doesn't update after a dependency change, use `this.$forceUpdate()`
 
 ## Importing .Json
 

@@ -11,6 +11,11 @@
         {{ truncatedLastMessage }}
       </p>
     </div>
+    <div id="unread-messages-counter-container">
+      <p id="unread-messages-counter">
+        {{ chatPreviewProp.unreadMessages }}
+      </p>
+    </div>
     <!-- TODO: Implement Unread Messages signal in this component -->
   </div>
 </template>
