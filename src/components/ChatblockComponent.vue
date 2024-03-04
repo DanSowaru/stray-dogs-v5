@@ -45,12 +45,11 @@ export default {
     },
     getPortrait () {
       const portraitUrl = require('@/assets/images/portraits/' + this.chatPreviewProp.dogPortrait + '.png')
-      try {
+      if (portraitUrl) {
         return portraitUrl
-      } catch (error) {
+      } else {
         return this.placeholderPortrait
       }
-      // return (portraitUrl != null) ? portraitUrl : this.placeholderPortrait
     }
   }
 }
