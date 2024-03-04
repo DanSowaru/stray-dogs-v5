@@ -13,10 +13,29 @@
 
 .chat-block-preview {
     margin-left: 2vw;
+    flex-grow: 1;
 }
 
 .chat-block-dog-name {
 }
 
 .chat-block-paragraph-preview {
+}
+
+.unread-messages-counter-container {
+    display: flex;
+    justify-content: center;
+    text-align: end;
+    width: 8vw;
+}
+
+.unread-messages-counter {
+    border: 2px solid red;
+    border-radius: 100%;
+    color: white;
+    padding: 1vw 2vw;
+    margin: auto;
+    text-align: center;
+    background-color: red;
+    font-size: x-large;
 }

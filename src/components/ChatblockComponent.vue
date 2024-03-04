@@ -1,7 +1,9 @@
 <template>
   <div class="dog-chat-block">
+    <!-- TODO: Add OnClick to the .dog-chat-block that opens the chatbox details and resets the UnreadMessages counter -->
     <div class="chat-block-portrait">
-      <img :src="getPortrait" alt="" />
+      <!-- TODO: Implement default image fallback (hard) -->
+      <img :src="dogPortrait" alt="Dog Portrait"/>
     </div>
     <div class="chat-block-preview">
       <h2 class="chat-block-dog-name">
@@ -11,8 +13,8 @@
         {{ truncatedLastMessage }}
       </p>
     </div>
-    <div id="unread-messages-counter-container">
-      <p id="unread-messages-counter">
+    <div class="unread-messages-counter-container">
+      <p v-if="unreadMessages > 0" class="unread-messages-counter">
         {{ chatPreviewProp.unreadMessages }}
       </p>
     </div>
@@ -26,7 +28,8 @@ export default {
 
   data () {
     return {
-      placeholderPortrait: require('@/assets/images/portraits/unknown.png')
+      placeholderPortrait: require('@/assets/images/portraits/unknown.png'),
+      dogPortrait: require('@/assets/images/portraits/' + this.chatPreviewProp.dogPortrait + '.png')
     }
   },
 
@@ -41,14 +44,6 @@ export default {
         return this.chatPreviewProp.dogLastMessage.slice(0, 150) + '...'
       } else {
         return this.chatPreviewProp.dogLastMessage
-      }
-    },
-    getPortrait () {
-      const portraitUrl = require('@/assets/images/portraits/' + this.chatPreviewProp.dogPortrait + '.png')
-      if (portraitUrl) {
-        return portraitUrl
-      } else {
-        return this.placeholderPortrait
       }
     }
   }
