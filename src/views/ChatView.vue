@@ -6,10 +6,15 @@
     v-for="chatPreviewUnit in chatlog"
     :key="chatPreviewUnit.dogId"
     :chatPreviewProp="chatPreviewUnit"
-    @click="Open"/>
+    @click="Open"
+    />
+    <!--
+      TODO: Create a OpenedChatComponent or OpenedChat View
+      TODO: Implement the Open method to change view to a individual chatbox -->
 
     <button @click="testUpdate">update Chatlog</button>
     <button @click="testUpdate2">update Chatlog message</button>
+    <button @click="testLog">console.log()</button>
   </section>
 </template>
 
@@ -17,8 +22,9 @@
 
 import ChatblockComponent from '@/components/ChatblockComponent.vue'
 
-import { testChatlog } from '@/assets/gamefiles/chatlog.js'
+// import { testChatlog } from '@/assets/gamefiles/chatlog.js'
 import { Dog } from '@/assets/gamefiles/Dog.js'
+import { CHARACTER_LIST } from '@/assets/gamefiles/DOG_LIST'
 
 export default {
   name: 'ChatView',
@@ -28,7 +34,8 @@ export default {
   data () {
     return {
       // TODO: change the origin of the imported chatlog to an array of Dogs objects that is holded in the ChatView component in an array of objects
-      chatlog: testChatlog,
+      chatlog: CHARACTER_LIST,
+      // characterList: CHARACTER_LIST,
       dogId: 0,
       jackRabbit: new Dog(
         'Jack Rabbit',
@@ -77,7 +84,11 @@ export default {
       }
     },
 
-    // ///////////////////////////////////////////////////     TEST AREA
+    // ///////////////////////////////////////////////////
+    // /////////////////                         /////////
+    // /////////////////        TEST AREA        /////////
+    // /////////////////                         /////////
+    // ///////////////////////////////////////////////////
     testUpdate () {
       this.jackRabbit.newMessage('Is this thing turned on?')
 
@@ -89,6 +100,11 @@ export default {
     testUpdate2 () {
       this.jackRabbit.newMessage('This is my second message!')
       this.updateChatlog(this.jackRabbit)
+    },
+
+    testLog () {
+      console.log(this.characterList)
+      console.log(this.chatlog)
     }
   }
 }

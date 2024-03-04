@@ -24,13 +24,17 @@
 export default {
   name: 'ChatblockComponent',
 
+  data () {
+    return {
+      placeholderPortrait: require('@/assets/images/portraits/unknown.png')
+    }
+  },
+
   props: ['chatPreviewProp'],
 
   methods: {
-    // getPortrait () {
-    //   return require('@/assets/images/portraits/' + this.chatPreviewProp.portraitUrl)
-    // }
   },
+
   computed: {
     truncatedLastMessage () {
       if (this.chatPreviewProp.dogLastMessage.length > 150) {
@@ -40,7 +44,13 @@ export default {
       }
     },
     getPortrait () {
-      return require('@/assets/images/portraits/' + this.chatPreviewProp.dogPortrait + '.png')
+      const portraitUrl = require('@/assets/images/portraits/' + this.chatPreviewProp.dogPortrait + '.png')
+      try {
+        return portraitUrl
+      } catch (error) {
+        return this.placeholderPortrait
+      }
+      // return (portraitUrl != null) ? portraitUrl : this.placeholderPortrait
     }
   }
 }

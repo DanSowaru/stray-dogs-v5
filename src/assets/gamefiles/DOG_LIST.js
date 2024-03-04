@@ -24,7 +24,7 @@ CHARACTER_LIST.push(magpieLatte)
 
 let monaMacaxx = new Dog(
   'Mona Macaxx', // dogName
-  'femon19', // dogPortrait
+  'femmon19', // dogPortrait
   23, // dogPersonalityGood
   53, // dogPersonalityEvil
   35, // dogPersonalitySmart
