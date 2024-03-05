@@ -1,6 +1,6 @@
 <template>
   <div class="dog-chat-block">
-    <!-- TODO: Add OnClick to the .dog-chat-block that opens the chatbox details and resets the UnreadMessages counter -->
+    <!-- TODO: Add OnClick to the .dog-chat-block that opens the chatbox details and resets the dogUnreadMessages counter -->
     <div class="chat-block-portrait">
       <!-- TODO: Implement default image fallback (hard) -->
       <img :src="dogPortrait" alt="Dog Portrait"/>
@@ -14,11 +14,12 @@
       </p>
     </div>
     <div class="unread-messages-counter-container">
-      <p v-if="unreadMessages > 0" class="unread-messages-counter">
-        {{ chatPreviewProp.unreadMessages }}
+      <p
+      v-show="chatPreviewProp.dogUnreadMessages > 0"
+      class="unread-messages-counter">
+        {{ chatPreviewProp.dogUnreadMessages }}
       </p>
     </div>
-    <!-- TODO: Implement Unread Messages signal in this component -->
   </div>
 </template>
 
@@ -28,7 +29,8 @@ export default {
 
   data () {
     return {
-      placeholderPortrait: require('@/assets/images/portraits/unknown.png'),
+      // TODO: Implement default fallback portrait
+      // placeholderPortrait: require('@/assets/images/portraits/unknown.png'),
       dogPortrait: require('@/assets/images/portraits/' + this.chatPreviewProp.dogPortrait + '.png')
     }
   },
@@ -46,6 +48,10 @@ export default {
         return this.chatPreviewProp.dogLastMessage
       }
     }
+  },
+
+  updated () {
+    console.log('updated', this.chatPreviewProp.dogUnreadMessages)
   }
 }
 

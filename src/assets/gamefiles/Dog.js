@@ -24,7 +24,7 @@ export class Dog {
 
   dogMessages = []
   dogLastMessage = ''
-  unreadMessages = 0
+  dogUnreadMessages = 0
 
   constructor (dogName, dogPortrait, dogPersonalityGood, dogPersonalityEvil, dogPersonalitySmart, dogPersonalityDumb, dogSkillPiloting, dogSkillPistols, dogSkillRifles, dogSkillStrategy, dogSkillCharisma, dogSkillLeadership) {
     this.dogName = dogName
@@ -46,7 +46,7 @@ export class Dog {
     const dogName = this.dogName
     this.dogMessages.push({ dogName, message, currentTime })
     this.dogLastMessage = message
-    this.unreadMessages++
+    this.dogUnreadMessages++
   }
 
   newPlayerReply (message) {
