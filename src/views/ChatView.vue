@@ -95,17 +95,11 @@ export default {
 
     testUpdate () {
       this.jackRabbit.newMessage('Is this thing turned on?')
-
       this.updateChatlog(this.jackRabbit)
-
-      console.log(this.chatlog)
-      console.log(this.jackRabbit.dogMessages)
-      console.log(this.jackRabbit.dogUnreadMessages)
     },
 
     testUpdate2 () {
       this.jackRabbit.newMessage('This is my second message!')
-      this.updateChatlog(this.jackRabbit)
     },
 
     testLog () {

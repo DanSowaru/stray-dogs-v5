@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 export class Dog {
-  dogName = 'Unknown name'
+  dogName = 'Unknown name' // FINAL
 
-  dogId = '0'
+  dogId = '0'// FINAL
 
-  dogPortrait = 'unknown'
+  dogPortrait = 'unknown' // FINAL
 
   dogPersonality = {
     good: 0,
@@ -22,9 +22,9 @@ export class Dog {
     leadership: 0
   }
 
-  dogMessages = []
-  dogLastMessage = ''
-  dogUnreadMessages = 0
+  dogMessages = [] // FINAL
+  dogLastMessage = '' // FINAL
+  dogUnreadMessages = 0 // FINAL
 
   constructor (dogName, dogPortrait, dogPersonalityGood, dogPersonalityEvil, dogPersonalitySmart, dogPersonalityDumb, dogSkillPiloting, dogSkillPistols, dogSkillRifles, dogSkillStrategy, dogSkillCharisma, dogSkillLeadership) {
     this.dogName = dogName
@@ -59,3 +59,9 @@ export class Dog {
 
   // TODO: Implement Unread Messages counter that resets after Chatblock clicking
 }
+
+/**
+ * Notes:
+ *
+ * Everything marked as FINAL cannot be changed or deleted at risk of breaking the application
+ */
