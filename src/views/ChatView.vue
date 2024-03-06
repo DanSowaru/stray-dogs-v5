@@ -9,6 +9,8 @@
       @click="openChatComponent"
     />
 
+    <!-- TODO: Create ActiveChatComponent -->
+
     <button @click="testUpdate">update Chatlog</button>
     <button @click="testUpdate2">update Chatlog message</button>
     <button @click="testLog">console.log()</button>
