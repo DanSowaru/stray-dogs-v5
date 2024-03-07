@@ -3,16 +3,22 @@
   <section id="chatlog-list-container">
 
     <ChatblockComponent
-      v-for="chatPreviewUnit in chatlog"
-      :key="chatPreviewUnit.dogId"
-      :chatPreviewProp="chatPreviewUnit"
-      @click="openChatComponent"
+      v-show="!openedActiveChat"
+      v-for="dogListUnit in hiredDogList"
+      :key="dogListUnit.dogId"
+      :chatPreviewProp="dogListUnit"
+      @click="openActiveChatComponent(dogListUnit)"
     />
 
-    <!-- TODO: Create ActiveChatComponent -->
+    <ActiveChatComponent
+      v-show="openedActiveChat"
+      :activeDog="activeDog"
+      :key="activeKey"
+      @close-active-chat="triggerActiveChat"
+    />
 
-    <button @click="testUpdate">update Chatlog</button>
-    <button @click="testUpdate2">update Chatlog message</button>
+    <button @click="testUpdate">update hiredDogList</button>
+    <button @click="testUpdate2">update hiredDogList message</button>
     <button @click="testLog">console.log()</button>
   </section>
 </template>
@@ -20,22 +26,32 @@
 <script>
 
 import ChatblockComponent from '@/components/ChatblockComponent.vue'
+import ActiveChatComponent from '@/components/ActiveChatComponent.vue'
 
-// import { testChatlog } from '@/assets/gamefiles/chatlog.js'
 import { Dog } from '@/assets/gamefiles/Dog.js'
 import { CHARACTER_LIST } from '@/assets/gamefiles/DOG_LIST'
 
 export default {
   name: 'ChatView',
   components: {
-    ChatblockComponent
+    ChatblockComponent,
+    ActiveChatComponent
   },
+
   data () {
     return {
-      // TODO: change the origin of the imported chatlog to an array of Dogs objects that is holded in the ChatView component in an array of objects
-      chatlog: CHARACTER_LIST,
-      // characterList: CHARACTER_LIST,
+
+      hiredDogList: CHARACTER_LIST,
+
+      openedActiveChat: false,
+
+      activeDog: new Dog(),
+
+      activeKey: 0, // used to force update the ActiveChat Portrait
+
       dogId: 0,
+
+      // TESTING
       jackRabbit: new Dog(
         'Jack Rabbit',
         'femrab2',
@@ -52,21 +68,26 @@ export default {
       )
     }
   },
-  // ------------------------------------------------------------------
-  // ------------------------------------------------------- METHODS
-  // ------------------------------------------------------------------
+
   methods: {
+
     /* eslint-disable prefer-const */
     /* eslint-disable no-tabs */
 
+    // ///////////////////////////////////////////////////////////////
+    // /////////////////                         /////////////////////
+    // /////////////////        Chat List        /////////////////////
+    // /////////////////                         /////////////////////
+    // ///////////////////////////////////////////////////////////////
+
     isExistingDog (dogName) {
-      let newDogResult = this.chatlog.some(chatbox => chatbox.dogName === dogName)
+      let newDogResult = this.hiredDogList.some(chatbox => chatbox.dogName === dogName)
       return newDogResult
     },
 
     generateNewId () {
       this.dogId++
-      const isIdAlreadyUsed = this.chatlog.some(chatbox => chatbox.dogId === this.dogId)
+      const isIdAlreadyUsed = this.hiredDogList.some(chatbox => chatbox.dogId === this.dogId)
       return isIdAlreadyUsed ? this.generateNewId() : this.dogId
     },
 
@@ -74,29 +95,41 @@ export default {
       if (!this.isExistingDog(dogObject.dogName)) {
         let newId = this.generateNewId()
         dogObject.dogId = newId
-        this.chatlog.push(dogObject)
+        this.hiredDogList.push(dogObject)
       } else {
-        this.chatlog.forEach(chatbox => {
+        this.hiredDogList.forEach(chatbox => {
           if (chatbox.dogName === dogObject.dogName) {
+            // TODO push and update also dogMesages
             chatbox.dogLastMessage = dogObject.dogLastMessage
           }
         })
       }
     },
 
-    openChatComponent () {
-    // TODO: Create a OpenedChatComponent or OpenedChat View
-    // TODO: Implement the Open method to change view to a individual chatbox
+    // ///////////////////////////////////////////////////////////////
+    // /////////////////                         /////////////////////
+    // /////////////////        Active Chat      /////////////////////
+    // /////////////////                         /////////////////////
+    // ///////////////////////////////////////////////////////////////
+
+    openActiveChatComponent (dogListUnit) {
+      this.activeKey = dogListUnit.dogId
+      this.activeDog = dogListUnit
+      this.triggerActiveChat(true)
     },
 
-    // ///////////////////////////////////////////////////
-    // /////////////////                         /////////
-    // /////////////////        TEST AREA        /////////
-    // /////////////////                         /////////
-    // ///////////////////////////////////////////////////
+    triggerActiveChat (value) {
+      this.openedActiveChat = value
+    },
+
+    //             ///////////////////////////////////////////////////
+    //             /////////////////                         /////////
+    //             /////////////////        TEST AREA        /////////
+    //             /////////////////                         /////////
+    //             ///////////////////////////////////////////////////
 
     testUpdate () {
-      this.jackRabbit.newMessage('Is this thing turned on?')
+      this.jackRabbit.newMessage('Is this thing turned on? lorem ipsum In this revised example, the ChildComponent emits an update-message event with the new message, and the ParentComponent listens for this event and updates its message data property accordingly. This is the recommended way to communicate changes from a child component back to its parent in Vue 3.')
       this.updateChatlog(this.jackRabbit)
     },
 
@@ -105,8 +138,7 @@ export default {
     },
 
     testLog () {
-      console.log(this.characterList)
-      console.log(this.chatlog)
+      console.log(this.hiredDogList)
     }
   }
 }

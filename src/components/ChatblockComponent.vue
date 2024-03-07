@@ -13,10 +13,9 @@
         {{ truncatedLastMessage }}
       </p>
     </div>
-    <div class="unread-messages-counter-container">
-      <p
-      v-show="chatPreviewProp.dogUnreadMessages > 0"
-      class="unread-messages-counter">
+    <div v-show="chatPreviewProp.dogUnreadMessages > 0"
+    class="unread-messages-counter-container">
+      <p class="unread-messages-counter">
         {{ chatPreviewProp.dogUnreadMessages }}
       </p>
     </div>
@@ -50,9 +49,7 @@ export default {
     }
   },
 
-  updated () {
-    console.log('updated', this.chatPreviewProp.dogUnreadMessages)
-  }
+  updated () {}
 }
 
 </script>

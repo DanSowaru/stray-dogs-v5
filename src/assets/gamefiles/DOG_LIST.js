@@ -20,6 +20,8 @@ let magpieLatte = new Dog(
   54 // dogSkillLeadership
 )
 
+magpieLatte.dogId = 1
+
 CHARACTER_LIST.push(magpieLatte)
 
 let monaMacaxx = new Dog(
@@ -37,6 +39,8 @@ let monaMacaxx = new Dog(
   75 // dogSkillLeadership
 )
 
+monaMacaxx.dogId = 2
+
 CHARACTER_LIST.push(monaMacaxx)
 
 let tabRomboy = new Dog(
@@ -53,6 +57,8 @@ let tabRomboy = new Dog(
   32, // dogSkillCharisma
   10 // dogSkillLeadership
 )
+
+tabRomboy.dogId = 3
 
 CHARACTER_LIST.push(tabRomboy)
 

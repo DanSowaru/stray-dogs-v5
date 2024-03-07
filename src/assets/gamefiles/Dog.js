@@ -26,7 +26,20 @@ export class Dog {
   dogLastMessage = '' // FINAL
   dogUnreadMessages = 0 // FINAL
 
-  constructor (dogName, dogPortrait, dogPersonalityGood, dogPersonalityEvil, dogPersonalitySmart, dogPersonalityDumb, dogSkillPiloting, dogSkillPistols, dogSkillRifles, dogSkillStrategy, dogSkillCharisma, dogSkillLeadership) {
+  constructor (
+    dogName = 'Unknown Dog',
+    dogPortrait = 'unknown',
+    dogPersonalityGood = 0,
+    dogPersonalityEvil = 0,
+    dogPersonalitySmart = 0,
+    dogPersonalityDumb = 0,
+    dogSkillPiloting = 0,
+    dogSkillPistols = 0,
+    dogSkillRifles = 0,
+    dogSkillStrategy = 0,
+    dogSkillCharisma = 0,
+    dogSkillLeadership = 0
+  ) {
     this.dogName = dogName
     this.dogPortrait = dogPortrait
     this.dogPersonalityGood = dogPersonalityGood
