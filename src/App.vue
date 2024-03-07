@@ -26,14 +26,3 @@ export default {
 }
 
 </script>
-
-<style lang="scss">
-
-#root-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 768px;
-  min-height: 100svh;
-}
-</style>

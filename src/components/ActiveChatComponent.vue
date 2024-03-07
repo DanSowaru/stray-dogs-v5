@@ -10,12 +10,19 @@
         </h2>
       </div>
     </section>
-
     <div class="exit-button" @click="closeActiveChat">
       <h1>
         X
       </h1>
     </div>
+    <section id="active-chat-feed">
+      <div class="active-chat-feed-baloon" v-for="(chatInput, index) in activeDog.dogMessages" :key="index">
+        <p class="active-chat-feed-baloon-text">
+          {{ chatInput.message }}
+        </p>
+
+      </div>
+    </section>
 
   </div>
 
@@ -49,7 +56,7 @@ export default {
   },
 
   computed: {
-    // dogPortrait: require('@/assets/images/portraits/' + this.activeDog.dogPortrait + '.png')
+
     dogPortrait () {
       try {
         if (this.loadedDog) {
@@ -78,9 +85,29 @@ export default {
   },
 
   methods: {
+
     closeActiveChat () {
       this.$emit('close-active-chat', false)
     }
+
+    // TODO: DO auto scroll to the bottom of the chat feed
+    //   scrollToBottom () {
+    //     this.$nextTick(() => {
+    //       const container = this.$refs.autoScrollBottom //name of the container it's referenced as ref="autoScrollBottom" at the container tag
+    //       container.scrollTop = container.scrollHeight
+    //     })
+    //   }
+    // },
+
+    // mounted () {
+    //   console.log('mounted')
+    //   this.scrollToBottom()
+    // },
+
+    // updated () {
+    //   console.log('updated')
+    //   this.scrollToBottom()
+    // }
   }
 }
 </script>
